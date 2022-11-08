@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBEXAMINATIONModelStoreContainer" CdmEntityContainer="DBEXAMINATIONEntities">
+    <EntitySetMapping Name="TBL_ADMIN">
+      <EntityTypeMapping TypeName="DBEXAMINATIONModel.TBL_ADMIN">
+        <MappingFragment StoreEntitySet="TBL_ADMIN">
+          <ScalarProperty Name="AD_EMAIL" ColumnName="AD_EMAIL" />
+          <ScalarProperty Name="AD_IMAGE" ColumnName="AD_IMAGE" />
+          <ScalarProperty Name="AD_ID" ColumnName="AD_ID" />
+          <ScalarProperty Name="AD_NAME" ColumnName="AD_NAME" />
+          <ScalarProperty Name="AD_PASSWORD" ColumnName="AD_PASSWORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_QUESTIONS">
+      <EntityTypeMapping TypeName="DBEXAMINATIONModel.TBL_QUESTIONS">
+        <MappingFragment StoreEntitySet="TBL_QUESTIONS">
+          <ScalarProperty Name="q_fk_catid" ColumnName="q_fk_catid" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="Q_TEXT" ColumnName="Q_TEXT" />
+          <ScalarProperty Name="OPA" ColumnName="OPA" />
+          <ScalarProperty Name="OPB" ColumnName="OPB" />
+          <ScalarProperty Name="OPC" ColumnName="OPC" />
+          <ScalarProperty Name="OPD" ColumnName="OPD" />
+          <ScalarProperty Name="OPP" ColumnName="OPP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_SETEXAME">
+      <EntityTypeMapping TypeName="DBEXAMINATIONModel.TBL_SETEXAME">
+        <MappingFragment StoreEntitySet="TBL_SETEXAME">
+          <ScalarProperty Name="EXAME_ID" ColumnName="EXAME_ID" />
+          <ScalarProperty Name="EXAME_DATE" ColumnName="EXAME_DATE" />
+          <ScalarProperty Name="EXAME_FK_STU" ColumnName="EXAME_FK_STU" />
+          <ScalarProperty Name="EXAME_NAME" ColumnName="EXAME_NAME" />
+          <ScalarProperty Name="EXAME_STD_SCORE" ColumnName="EXAME_STD_SCORE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_STUDENT">
+      <EntityTypeMapping TypeName="DBEXAMINATIONModel.TBL_STUDENT">
+        <MappingFragment StoreEntitySet="TBL_STUDENT">
+          <ScalarProperty Name="S_EMAIL" ColumnName="S_EMAIL" />
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+          <ScalarProperty Name="S_NAME" ColumnName="S_NAME" />
+          <ScalarProperty Name="S_PASSWORD" ColumnName="S_PASSWORD" />
+          <ScalarProperty Name="S_IMAGE" ColumnName="S_IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_category">
+      <EntityTypeMapping TypeName="DBEXAMINATIONModel.tbl_category">
+        <MappingFragment StoreEntitySet="tbl_category">
+          <ScalarProperty Name="cat_encyptedstring" ColumnName="cat_encyptedstring" />
+          <ScalarProperty Name="cat_fk_adid" ColumnName="cat_fk_adid" />
+          <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

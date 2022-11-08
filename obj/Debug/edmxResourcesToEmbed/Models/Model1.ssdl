@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBEXAMINATIONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_ADMIN">
+    <Key>
+      <PropertyRef Name="AD_ID" />
+    </Key>
+    <Property Name="AD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD_NAME" Type="nvarchar" MaxLength="80" />
+    <Property Name="AD_PASSWORD" Type="nvarchar" MaxLength="80" />
+    <Property Name="AD_IMAGE" Type="nvarchar(max)" />
+    <Property Name="AD_EMAIL" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cat_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cat_fk_adid" Type="int" />
+    <Property Name="cat_encyptedstring" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TBL_QUESTIONS">
+    <Key>
+      <PropertyRef Name="QUESTION_ID" />
+    </Key>
+    <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Q_TEXT" Type="nvarchar" MaxLength="200" />
+    <Property Name="OPA" Type="nvarchar" MaxLength="200" />
+    <Property Name="OPB" Type="nvarchar" MaxLength="200" />
+    <Property Name="OPC" Type="nvarchar" MaxLength="200" />
+    <Property Name="OPD" Type="nvarchar" MaxLength="200" />
+    <Property Name="OPP" Type="nvarchar" MaxLength="200" />
+    <Property Name="q_fk_catid" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_SETEXAME">
+    <Key>
+      <PropertyRef Name="EXAME_ID" />
+    </Key>
+    <Property Name="EXAME_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EXAME_DATE" Type="datetime" />
+    <Property Name="EXAME_FK_STU" Type="int" />
+    <Property Name="EXAME_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EXAME_STD_SCORE" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_STUDENT">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="S_NAME" Type="nvarchar" MaxLength="80" />
+    <Property Name="S_PASSWORD" Type="nvarchar" MaxLength="80" />
+    <Property Name="S_IMAGE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="S_EMAIL" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <Association Name="FK__tbl_categ__cat_f__32E0915F">
+    <End Role="TBL_ADMIN" Type="Self.TBL_ADMIN" Multiplicity="0..1" />
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ADMIN">
+        <PropertyRef Name="AD_ID" />
+      </Principal>
+      <Dependent Role="tbl_category">
+        <PropertyRef Name="cat_fk_adid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TBL_QUEST__q_fk___33D4B598">
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+    <End Role="TBL_QUESTIONS" Type="Self.TBL_QUESTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_category">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="TBL_QUESTIONS">
+        <PropertyRef Name="q_fk_catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TBL_SETEX__EXAME__300424B4">
+    <End Role="TBL_STUDENT" Type="Self.TBL_STUDENT" Multiplicity="0..1" />
+    <End Role="TBL_SETEXAME" Type="Self.TBL_SETEXAME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_STUDENT">
+        <PropertyRef Name="S_ID" />
+      </Principal>
+      <Dependent Role="TBL_SETEXAME">
+        <PropertyRef Name="EXAME_FK_STU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBEXAMINATIONModelStoreContainer">
+    <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_QUESTIONS" EntityType="Self.TBL_QUESTIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_SETEXAME" EntityType="Self.TBL_SETEXAME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_STUDENT" EntityType="Self.TBL_STUDENT" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_categ__cat_f__32E0915F" Association="Self.FK__tbl_categ__cat_f__32E0915F">
+      <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+      <End Role="tbl_category" EntitySet="tbl_category" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TBL_QUEST__q_fk___33D4B598" Association="Self.FK__TBL_QUEST__q_fk___33D4B598">
+      <End Role="tbl_category" EntitySet="tbl_category" />
+      <End Role="TBL_QUESTIONS" EntitySet="TBL_QUESTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TBL_SETEX__EXAME__300424B4" Association="Self.FK__TBL_SETEX__EXAME__300424B4">
+      <End Role="TBL_STUDENT" EntitySet="TBL_STUDENT" />
+      <End Role="TBL_SETEXAME" EntitySet="TBL_SETEXAME" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
